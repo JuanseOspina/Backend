@@ -61,7 +61,7 @@ app.get('/pending', async function (req, res) {
 })
 
 app.get('/', function (req, res) {
-  res.status(200).send({'service_status :)': 'Up'})
+  res.status(200).send({'este es un test UTIL xd ': 'OK'})
 })
 
 console.log('server listening through port: ' + process.env.PORT)
