@@ -8,7 +8,6 @@ pipeline {
     stages {
 
         stage('Run Test'){
-            
             steps{
                 script{
                     sh "docker build -t juospina/test:latest -f Dockerfile.test ."
@@ -18,10 +17,10 @@ pipeline {
         }
 
         stage('Download Image and retag') {
+            when {
+                branch 'main'
+            }
             steps {
-                when { 
-                    branch 'main'
-                }
                 script {
                     sh "docker pull juospina/backend:latest"
                     sh "docker tag juospina/backend:latest juospina/backend:recovery"
@@ -33,10 +32,10 @@ pipeline {
         }
 
         stage('Build new and pull'){
+            when {
+                branch 'main'
+            }
             steps{
-                when {
-                    branch 'main'
-                }
                 script{
                     sh "chmod +x start.sh"
                     sh "docker build -t juospina/backend:latest -f Dockerfile . "
@@ -47,10 +46,10 @@ pipeline {
         }
 
         stage('Deployment'){
+            when {
+                branch 'main'
+            }
             steps{
-                when {
-                    branch 'main'
-                }
                 sshagent(credentials: ['ubuntu_bastion']) {
                     sh '''
                     [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
