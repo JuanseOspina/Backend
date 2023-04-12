@@ -1,4 +1,4 @@
 #!/bin/sh
 
-npm run seeds
+npm seeds
 npm start
