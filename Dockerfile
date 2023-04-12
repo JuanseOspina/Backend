@@ -5,5 +5,5 @@ RUN npm install
 COPY . .
 ENV PORT=3000
 EXPOSE $PORT
-RUN npm seeds.js
-CMD ["node","server.js"]
+CMD ["./start.sh"]
+

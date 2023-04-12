@@ -31,7 +31,8 @@ pipeline {
         stage('Build new and pull'){
             steps{
                 script{
-                    sh "docker build -t juospina/backend:latest ."
+                    sh "chmod +x start.sh"
+                    sh "docker build -t juospina/backend:latest -f Dockerfile . "
                     sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin "
                     sh "docker push juospina/backend:latest"
                 }
