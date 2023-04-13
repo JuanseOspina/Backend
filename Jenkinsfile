@@ -53,8 +53,8 @@ pipeline {
                 sshagent(credentials: ['ubuntu_bastion']) {
                     sh '''
                     [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
-                    ssh-keyscan -t rsa,dsa 10.0.0.87 >> ~/.ssh/known_hosts
-                    ssh ubuntu@10.0.0.87 'kubectl rollout restart deployment/backend-deployment'
+                    ssh-keyscan -t rsa,dsa 10.0.0.81 >> ~/.ssh/known_hosts
+                    ssh ubuntu@10.0.0.81 'kubectl rollout restart deployment/backend-deployment'
                     '''
                 }
             }
